@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Términos y Condiciones - OVERLINE</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #fafafa;
+      color: #212121;
+      margin: 0;
+      padding: 0;
+    }
+
+    .contenedor-terminos {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #017096;
+      margin-bottom: 30px;
+    }
+
+    .acordeon-item {
+      border: 1px solid #017096;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      overflow: hidden;
+      transition: box-shadow 0.3s ease;
+    }
+
+    .acordeon-item:hover {
+      box-shadow: 0 0 10px rgba(1,112,150,0.3);
+    }
+
+    .acordeon-titulo {
+      background: #04bbfb;
+      color: #212121;
+      padding: 14px;
+      cursor: pointer;
+      font-weight: 600;
+      border: none;
+      width: 100%;
+      text-align: left;
+      transition: background 0.3s ease;
+    }
+
+    .acordeon-titulo:hover {
+      background: #017096;
+      color: #fafafa;
+    }
+
+    .acordeon-contenido {
+      max-height: 0;
+      overflow: hidden;
+      background: #fff;
+      transition: max-height 0.4s ease, padding 0.3s ease;
+      padding: 0 14px;
+    }
+
+    .acordeon-contenido p {
+      margin: 10px 0;
+      line-height: 1.5;
+    }
+
+    .acordeon-item.activo .acordeon-contenido {
+      max-height: 600px;
+      padding: 14px;
+    }
+
+    strong {
+      color: #017096;
+    }
+
+    .btn-volver {
+      display: block;
+      margin: 40px auto;
+      padding: 14px 28px;
+      background: #04bbfb;
+      color: #212121;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      text-decoration: none;
+      text-align: center;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+    .btn-volver:hover {
+      background: #017096;
+      color: #fafafa;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <div class="contenedor-terminos">
+    <h1>📜 Términos y Condiciones</h1>
+
+    <!-- Bloques interactivos -->
+    <div class="acordeon-item">
+      <button class="acordeon-titulo">📑 Identificación y definiciones</button>
+      <div class="acordeon-contenido">
+        <p><strong>Razón social:</strong> OVERLINE AGENCIA S.A.S</p>
+        <p><strong>Contacto oficial:</strong> overlineagenciagrafica@gmail.com 3018282771</p>
+        <p><strong>Cliente:</strong> Persona natural o jurídica que contrata los servicios.</p>
+        <p><strong>Proyecto:</strong> Conjunto de actividades, entregables y tiempos definidos.</p>
+        <p><strong>Entregables:</strong> Piezas finales acordadas.</p>
+        <p><strong>Aprobación por escrito:</strong> Confirmación vía correo u otro canal.</p>
+      </div>
+    </div>
+
+    <div class="acordeon-item">
+      <button class="acordeon-titulo">🎨 Alcance de servicios y entregables</button>
+      <div class="acordeon-contenido">
+        <p><strong>Portafolio de servicios:</strong> Diseño gráfico, branding, publicidad digital, gestión de campañas, producción audiovisual, consultoría y contenidos.</p>
+        <p><strong>Contrato por proyecto/plan:</strong> Cada servicio se documenta en cotización con alcance, entregables, tiempos y precio.</p>
+        <p><strong>Exclusiones:</strong> Todo lo no descrito en la cotización se considera fuera de alcance.</p>
+        <p><strong>Revisiones incluidas:</strong> Hasta tres rondas de edición por pieza.</p>
+        <p><strong>Cambios adicionales:</strong> Se cotizan aparte.</p>
+        <p><strong>Formatos de entrega:</strong> Según lo pactado.</p>
+        <p><strong>Accesos y membresías:</strong> Se habilitan durante el período contratado.</p>
+      </div>
+    </div>
+
+    <div class="acordeon-item">
+      <button class="acordeon-titulo">💰 Precios, impuestos y facturación</button>
+      <div class="acordeon-contenido">
+        <p><strong>Moneda:</strong> Valores expresados en COP.</p>
+        <p><strong>IVA:</strong> Servicios gravados con 19% de IVA.</p>
+        <p><strong>Facturación electrónica:</strong> Según normatividad vigente.</p>
+        <p><strong>Anticipo y saldo:</strong> 50% anticipo y 50% contra entrega.</p>
+        <p><strong>Retenciones:</strong> El cliente debe informar y soportar retenciones.</p>
+        <p><strong>Vigencia de cotización:</strong> 30 días calendario.</p>
+        <p><strong>Reajustes:</strong> Cambios de alcance pueden modificar precio.</p>
+      </div>
+    </div>
+
+    <div class="acordeon-item">
+      <button class="acordeon-titulo">⏱️ Tiempos, aprobaciones y gestión</button>
+      <div class="acordeon-contenido">
+        <p><strong>Inicio del proyecto:</strong> Tras recepción de anticipo e insumos.</p>
+        <p><strong>Entrega inicial audiovisual:</strong> 5 a 7 días hábiles.</p>
+        <p><strong>Rondas de ajustes:</strong> 2 a 4 días hábiles tras feedback.</p>
+        <p><strong>Ventana de comentarios:</strong> 15 días calendario.</p>
+        <p><strong>Aprobación tácita:</strong> Ausencia de respuesta = aprobación.</p>
+        <p><strong>Retrasos por insumos:</strong> Pausa si faltan contenidos.</p>
+        <p><strong>Urgencias:</strong> Servicios exprés tienen recargo.</p>
+      </div>
+    </div>
+
+    <div class="acordeon-item">
+      <button class="acordeon-titulo">📢 Propiedad intelectual y licencias</button>
+      <div class="acordeon-contenido">
+        <p><strong>Derechos de autor:</strong> Conservados por la agencia salvo cesión.</p>
+        <p><strong>Licencia al cliente:</strong> Uso comercial sobre entregables pagados.</p>
+        <p><strong>Archivos editables:</strong> Se cotizan aparte.</p>
+        <p><strong>Portafolio:</strong> La agencia puede mostrar piezas.</p>
+        <p><strong>Materiales de terceros:</strong> Fonts, música, stock con licencias.</p>
+      </div>
+    </div>
+
+    <div class="acordeon-item">
+      <button class="acordeon-titulo">🔒 Confidencialidad y protección de datos</button>
+      <div class="acordeon-contenido">
+        <p><strong>Información reservada:</strong> Se mantiene confidencialidad.</p>
+        <p><strong>Datos personales:</strong> Tratados según normativa colombiana.</p>
+        <p><strong>Acuerdos adicionales:</strong> NDA opcional.</p>
+      </div>
+    </div>
+
+    <div class="acordeon-item">
+      <button class="acordeon-titulo">🎬 Costos externos y logística</button>
+      <div class="acordeon-contenido">
+        <p><strong>Gastos no incluidos:</strong> Locaciones, viáticos, transporte...</p>
+        <p><strong>Aprobación previa:</strong> Todo costo externo se informa.</p>
+        <p><strong>Condiciones de rodaje:</strong> Cliente gestiona accesos.</p>
+        <p><strong>Seguridad y permisos:</strong> Cliente declara contar con derechos.</p>
+      </div>
+    </div>
+
+        <div class="acordeon-item">
+      <button class="acordeon-titulo">🚫 Cancelaciones y terminación</button>
+      <div class="acordeon-contenido">
+        <p><strong>Cancelación por el cliente:</strong> El anticipo cubre planificación y trabajo ejecutado.</p>
+        <p><strong>Cancelaciones con menos de 48h:</strong> Pueden generar cargos por logística y proveedores.</p>
+        <p><strong>Reprogramación:</strong> Sujeta a disponibilidad y puede implicar costos adicionales.</p>
+        <p><strong>Incumplimiento de pago:</strong> La agencia puede suspender trabajos, accesos y entregas hasta regularizar.</p>
+        <p><strong>Fuerza mayor:</strong> Permite reprogramación sin penalidad.</p>
+        <p><strong>Cierre del proyecto:</strong> Finaliza con la entrega del material aprobado y el pago total.</p>
+      </div>
+    </div>
+
+    <div class="acordeon-item">
+      <button class="acordeon-titulo">✅ Garantías, limitación de responsabilidad e indemnidad</button>
+      <div class="acordeon-contenido">
+        <p><strong>Garantía técnica:</strong> Corrección sin costo de errores atribuibles a producción/edición durante 15 días tras la entrega final.</p>
+        <p><strong>Desempeño de campañas:</strong> No se garantizan resultados específicos (ventas, leads, posicionamiento).</p>
+        <p><strong>Hosting y terceros:</strong> La agencia no responde por caídas o configuraciones externas.</p>
+        <p><strong>Límite de responsabilidad:</strong> Hasta el monto efectivamente pagado por el proyecto.</p>
+        <p><strong>Indemnidad:</strong> El cliente mantendrá indemne a la agencia por reclamos derivados de materiales o permisos suministrados por él.</p>
+      </div>
+    </div>
+
+    <div class="acordeon-item">
+      <button class="acordeon-titulo">⚖️ Jurisdicción, disputas y disposiciones finales</button>
+      <div class="acordeon-contenido">
+        <p><strong>Ley aplicable:</strong> Legislación colombiana.</p>
+        <p><strong>Domicilio:</strong> Bogotá D.C., salvo acuerdo diferente.</p>
+        <p><strong>Resolución de conflictos:</strong> Primero negociación de buena fe; luego conciliación y, en última instancia, jurisdicción ordinaria.</p>
+        <p><strong>Modificación de términos:</strong> La agencia puede actualizar estos términos; la versión vigente estará publicada en la web.</p>
+        <p><strong>Divisibilidad:</strong> Si alguna cláusula es inválida, las restantes permanecen vigentes.</p>
+        <p><strong>Prioridad documental:</strong> Prevalece lo pactado en la cotización/orden de servicio y su anexo técnico.</p>
+      </div>
+    </div>
+
+    <div class="acordeon-item">
+      <button class="acordeon-titulo">📂 Anexo opcional para planes mensuales y acceso a plataformas</button>
+      <div class="acordeon-contenido">
+        <p><strong>Acceso condicionado al pago:</strong> El acceso se habilita durante el período pagado y se suspende automáticamente ante mora.</p>
+        <p><strong>Renovaciones:</strong> Pueden ser automáticas o manuales según el plan.</p>
+        <p><strong>Uso permitido:</strong> Prohibido compartir accesos o redistribuir contenidos a terceros.</p>
+        <p><strong>Soporte:</strong> Incluye soporte técnico razonable durante el período activo; requerimientos extra se cotizan.</p>
+      </div>
+    </div>
+
+       <!-- Botón volver -->
+    <a href="https://overlineagencia.com.co/" class="btn-volver">Volver al inicio</a>
+  </div>
+
+  <script>
+    // Interactividad acordeón
+    document.querySelectorAll(".acordeon-titulo").forEach(titulo => {
+      titulo.addEventListener("click", () => {
+        const item = titulo.parentElement;
+        item.classList.toggle("activo");
+      });
+    });
+  </script>
+</body>
+</html>
+
