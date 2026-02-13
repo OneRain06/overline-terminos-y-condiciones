@@ -1,247 +1,584 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-    <link rel="icon" href="logo-overline.webp" type="image/webp">
-  <title>Términos y Condiciones - OVERLINE</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: #fafafa;
-      color: #212121;
-      margin: 0;
-      padding: 0;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Overline Studio Builder</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-    .contenedor-terminos {
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 20px;
-    }
+<style>
+:root{
+  --bg:#0f172a;
+  --card:#1e293b;
+  --accent:#00C2FF;
+  --accent2:#2563eb;
+  --text:#f1f5f9;
+  --muted:#94a3b8;
+}
 
-    h1 {
-      text-align: center;
-      color: #017096;
-      margin-bottom: 30px;
-    }
+*{margin:0;padding:0;box-sizing:border-box}
 
-    .acordeon-item {
-      border: 1px solid #017096;
-      border-radius: 8px;
-      margin-bottom: 15px;
-      overflow: hidden;
-      transition: box-shadow 0.3s ease;
-    }
+body{
+  font-family:'Inter',sans-serif;
+  background:linear-gradient(135deg,#0f172a,#111827);
+  color:var(--text);
+}
 
-    .acordeon-item:hover {
-      box-shadow: 0 0 10px rgba(1,112,150,0.3);
-    }
+/* HEADER */
+header{
+  padding:20px 40px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
 
-    .acordeon-titulo {
-      background: #04bbfb;
-      color: #212121;
-      padding: 14px;
-      cursor: pointer;
-      font-weight: 600;
-      border: none;
-      width: 100%;
-      text-align: left;
-      transition: background 0.3s ease;
-    }
+.logo{
+  font-weight:700;
+  font-size:20px;
+  letter-spacing:1px;
+}
 
-    .acordeon-titulo:hover {
-      background: #017096;
-      color: #fafafa;
-    }
+.cart-btn{
+  background:var(--accent);
+  border:none;
+  padding:10px 15px;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:600;
+}
 
-    .acordeon-contenido {
-      max-height: 0;
-      overflow: hidden;
-      background: #fff;
-      transition: max-height 0.4s ease, padding 0.3s ease;
-      padding: 0 14px;
-    }
+/* LAYOUT */
+.container{
+  display:grid;
+  grid-template-columns:250px 1fr;
+}
 
-    .acordeon-contenido p {
-      margin: 10px 0;
-      line-height: 1.5;
-    }
+.sidebar{
+  padding:30px;
+}
 
-    .acordeon-item.activo .acordeon-contenido {
-      max-height: 600px;
-      padding: 14px;
-    }
+.category{
+  padding:10px 15px;
+  margin-bottom:8px;
+  border-radius:8px;
+  cursor:pointer;
+  color:var(--muted);
+  transition:.3s;
+}
 
-    strong {
-      color: #017096;
-    }
+.category.active,
+.category:hover{
+  background:var(--accent);
+  color:#000;
+}
 
-    .btn-volver {
-      display: block;
-      margin: 40px auto;
-      padding: 14px 28px;
-      background: #04bbfb;
-      color: #212121;
-      border: none;
-      border-radius: 6px;
-      font-weight: 600;
-      text-decoration: none;
-      text-align: center;
-      transition: background 0.3s ease, transform 0.3s ease;
-    }
+.main{
+  padding:40px;
+}
 
-    .btn-volver:hover {
-      background: #017096;
-      color: #fafafa;
-      transform: scale(1.05);
-    }
-  </style>
+.hero{
+  background:linear-gradient(135deg,var(--accent2),var(--accent));
+  padding:40px;
+  border-radius:20px;
+  margin-bottom:40px;
+}
+
+.hero h1{
+  font-size:32px;
+  margin-bottom:10px;
+}
+
+/* GRID */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+  gap:20px;
+}
+
+.card{
+  background:var(--card);
+  padding:20px;
+  border-radius:15px;
+  transition:.3s;
+}
+
+.card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 10px 30px rgba(0,194,255,.2);
+}
+
+.price{
+  font-weight:bold;
+  margin:10px 0;
+}
+
+.add{
+  background:var(--accent);
+  border:none;
+  padding:8px 12px;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+/* OFFCANVAS */
+.offcanvas{
+  position:fixed;
+  top:0;
+  right:-420px;
+  width:400px;
+  max-width:100%;
+  height:100%;
+  background:rgba(30,41,59,.98);
+  backdrop-filter:blur(20px);
+  padding:30px;
+  transition:.4s cubic-bezier(.77,0,.18,1);
+  overflow-y:auto;
+  z-index:999;
+  box-shadow:-10px 0 40px rgba(0,0,0,.5);
+}
+
+.offcanvas.active{
+  right:0;
+}
+
+.overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.6);
+  backdrop-filter:blur(3px);
+  display:none;
+  z-index:998;
+}
+
+.cart-item{
+  margin-bottom:15px;
+}
+
+.qty{
+  background:var(--accent);
+  border:none;
+  padding:2px 6px;
+  margin:0 3px;
+  border-radius:4px;
+  cursor:pointer;
+}
+
+.progress{
+  background:#111827;
+  height:8px;
+  border-radius:5px;
+  margin:10px 0;
+  overflow:hidden;
+}
+
+.progress-bar{
+  height:100%;
+  background:var(--accent);
+  width:0%;
+  transition:.4s;
+}
+
+.generate{
+  background:var(--accent2);
+  border:none;
+  padding:10px;
+  border-radius:8px;
+  cursor:pointer;
+  width:100%;
+  font-weight:600;
+  margin-top:15px;
+}
+
+/* MODAL */
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.6);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  opacity:0;
+  pointer-events:none;
+  transition:.3s ease;
+  z-index:1000;
+}
+
+.modal.active{
+  opacity:1;
+  pointer-events:auto;
+}
+
+.modal-content{
+  background:#1e293b;
+  padding:30px;
+  border-radius:15px;
+  width:400px;
+  max-width:90%;
+  transform:translateY(20px);
+  transition:.3s ease;
+}
+
+.modal.active .modal-content{
+  transform:translateY(0);
+}
+
+.modal input{
+  width:100%;
+  padding:10px;
+  margin-bottom:10px;
+  border:none;
+  border-radius:6px;
+}
+
+/* LOADER */
+.loader{
+  border:4px solid rgba(255,255,255,.1);
+  border-top:4px solid var(--accent);
+  border-radius:50%;
+  width:30px;
+  height:30px;
+  animation:spin 1s linear infinite;
+  margin:auto;
+}
+
+@keyframes spin{
+  to{transform:rotate(360deg);}
+}
+
+/* TOAST */
+.toast{
+  position:fixed;
+  bottom:30px;
+  right:30px;
+  background:var(--accent);
+  color:#000;
+  padding:15px 20px;
+  border-radius:10px;
+  font-weight:600;
+  opacity:0;
+  transform:translateY(20px);
+  transition:.4s;
+  z-index:2000;
+}
+
+.toast.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* MOBILE */
+@media(max-width:900px){
+
+  .container{
+    grid-template-columns:1fr;
+  }
+
+  .sidebar{
+    display:flex;
+    overflow-x:auto;
+    gap:10px;
+    padding:15px 20px;
+    background:rgba(30,41,59,.9);
+    position:sticky;
+    top:0;
+    z-index:5;
+  }
+
+  .category{
+    white-space:nowrap;
+    margin-bottom:0;
+  }
+}
+</style>
 </head>
+
 <body>
-  <div class="contenedor-terminos">
-    <h1>📜 Términos y Condiciones</h1>
 
-    <!-- Bloques interactivos -->
-    <div class="acordeon-item">
-      <button class="acordeon-titulo">📑 Identificación y definiciones</button>
-      <div class="acordeon-contenido">
-        <p><strong>Razón social:</strong> OVERLINE AGENCIA S.A.S</p>
-        <p><strong>Contacto oficial:</strong> overlineagenciagrafica@gmail.com 3018282771</p>
-        <p><strong>Cliente:</strong> Persona natural o jurídica que contrata los servicios.</p>
-        <p><strong>Proyecto:</strong> Conjunto de actividades, entregables y tiempos definidos.</p>
-        <p><strong>Entregables:</strong> Piezas finales acordadas.</p>
-        <p><strong>Aprobación por escrito:</strong> Confirmación vía correo u otro canal.</p>
-      </div>
-    </div>
+<header>
+  <div class="logo">OVERLINE STUDIO</div>
+  <button class="cart-btn" onclick="toggleCart()">Proyecto 🛒</button>
+</header>
 
-    <div class="acordeon-item">
-      <button class="acordeon-titulo">🎨 Alcance de servicios y entregables</button>
-      <div class="acordeon-contenido">
-        <p><strong>Portafolio de servicios:</strong> Diseño gráfico, branding, publicidad digital, gestión de campañas, producción audiovisual, consultoría y contenidos.</p>
-        <p><strong>Contrato por proyecto/plan:</strong> Cada servicio se documenta en cotización con alcance, entregables, tiempos y precio.</p>
-        <p><strong>Exclusiones:</strong> Todo lo no descrito en la cotización se considera fuera de alcance.</p>
-        <p><strong>Revisiones incluidas:</strong> Hasta tres rondas de edición por pieza.</p>
-        <p><strong>Cambios adicionales:</strong> Se cotizan aparte.</p>
-        <p><strong>Formatos de entrega:</strong> Según lo pactado.</p>
-        <p><strong>Accesos y membresías:</strong> Se habilitan durante el período contratado.</p>
-      </div>
-    </div>
-
-    <div class="acordeon-item">
-      <button class="acordeon-titulo">💰 Precios, impuestos y facturación</button>
-      <div class="acordeon-contenido">
-        <p><strong>Moneda:</strong> Valores expresados en COP.</p>
-        <p><strong>IVA:</strong> Servicios gravados con 19% de IVA.</p>
-        <p><strong>Facturación electrónica:</strong> Según normatividad vigente.</p>
-        <p><strong>Anticipo y saldo:</strong> 50% anticipo y 50% contra entrega.</p>
-        <p><strong>Retenciones:</strong> El cliente debe informar y soportar retenciones.</p>
-        <p><strong>Vigencia de cotización:</strong> 30 días calendario.</p>
-        <p><strong>Reajustes:</strong> Cambios de alcance pueden modificar precio.</p>
-      </div>
-    </div>
-
-    <div class="acordeon-item">
-      <button class="acordeon-titulo">⏱️ Tiempos, aprobaciones y gestión</button>
-      <div class="acordeon-contenido">
-        <p><strong>Inicio del proyecto:</strong> Tras recepción de anticipo e insumos.</p>
-        <p><strong>Entrega inicial audiovisual:</strong> 5 a 7 días hábiles.</p>
-        <p><strong>Rondas de ajustes:</strong> 2 a 4 días hábiles tras feedback.</p>
-        <p><strong>Ventana de comentarios:</strong> 15 días calendario.</p>
-        <p><strong>Aprobación tácita:</strong> Ausencia de respuesta = aprobación.</p>
-        <p><strong>Retrasos por insumos:</strong> Pausa si faltan contenidos.</p>
-        <p><strong>Urgencias:</strong> Servicios exprés tienen recargo.</p>
-      </div>
-    </div>
-
-    <div class="acordeon-item">
-      <button class="acordeon-titulo">📢 Propiedad intelectual y licencias</button>
-      <div class="acordeon-contenido">
-        <p><strong>Derechos de autor:</strong> Conservados por la agencia salvo cesión.</p>
-        <p><strong>Licencia al cliente:</strong> Uso comercial sobre entregables pagados.</p>
-        <p><strong>Archivos editables:</strong> Se cotizan aparte.</p>
-        <p><strong>Portafolio:</strong> La agencia puede mostrar piezas.</p>
-        <p><strong>Materiales de terceros:</strong> Fonts, música, stock con licencias.</p>
-      </div>
-    </div>
-
-    <div class="acordeon-item">
-      <button class="acordeon-titulo">🔒 Confidencialidad y protección de datos</button>
-      <div class="acordeon-contenido">
-        <p><strong>Información reservada:</strong> Se mantiene confidencialidad.</p>
-        <p><strong>Datos personales:</strong> Tratados según normativa colombiana.</p>
-        <p><strong>Acuerdos adicionales:</strong> NDA opcional.</p>
-      </div>
-    </div>
-
-    <div class="acordeon-item">
-      <button class="acordeon-titulo">🎬 Costos externos y logística</button>
-      <div class="acordeon-contenido">
-        <p><strong>Gastos no incluidos:</strong> Locaciones, viáticos, transporte...</p>
-        <p><strong>Aprobación previa:</strong> Todo costo externo se informa.</p>
-        <p><strong>Condiciones de rodaje:</strong> Cliente gestiona accesos.</p>
-        <p><strong>Seguridad y permisos:</strong> Cliente declara contar con derechos.</p>
-      </div>
-    </div>
-
-        <div class="acordeon-item">
-      <button class="acordeon-titulo">🚫 Cancelaciones y terminación</button>
-      <div class="acordeon-contenido">
-        <p><strong>Cancelación por el cliente:</strong> El anticipo cubre planificación y trabajo ejecutado.</p>
-        <p><strong>Cancelaciones con menos de 48h:</strong> Pueden generar cargos por logística y proveedores.</p>
-        <p><strong>Reprogramación:</strong> Sujeta a disponibilidad y puede implicar costos adicionales.</p>
-        <p><strong>Incumplimiento de pago:</strong> La agencia puede suspender trabajos, accesos y entregas hasta regularizar.</p>
-        <p><strong>Fuerza mayor:</strong> Permite reprogramación sin penalidad.</p>
-        <p><strong>Cierre del proyecto:</strong> Finaliza con la entrega del material aprobado y el pago total.</p>
-      </div>
-    </div>
-
-    <div class="acordeon-item">
-      <button class="acordeon-titulo">✅ Garantías, limitación de responsabilidad e indemnidad</button>
-      <div class="acordeon-contenido">
-        <p><strong>Garantía técnica:</strong> Corrección sin costo de errores atribuibles a producción/edición durante 15 días tras la entrega final.</p>
-        <p><strong>Desempeño de campañas:</strong> No se garantizan resultados específicos (ventas, leads, posicionamiento).</p>
-        <p><strong>Hosting y terceros:</strong> La agencia no responde por caídas o configuraciones externas.</p>
-        <p><strong>Límite de responsabilidad:</strong> Hasta el monto efectivamente pagado por el proyecto.</p>
-        <p><strong>Indemnidad:</strong> El cliente mantendrá indemne a la agencia por reclamos derivados de materiales o permisos suministrados por él.</p>
-      </div>
-    </div>
-
-    <div class="acordeon-item">
-      <button class="acordeon-titulo">⚖️ Jurisdicción, disputas y disposiciones finales</button>
-      <div class="acordeon-contenido">
-        <p><strong>Ley aplicable:</strong> Legislación colombiana.</p>
-        <p><strong>Domicilio:</strong> Bogotá D.C., salvo acuerdo diferente.</p>
-        <p><strong>Resolución de conflictos:</strong> Primero negociación de buena fe; luego conciliación y, en última instancia, jurisdicción ordinaria.</p>
-        <p><strong>Modificación de términos:</strong> La agencia puede actualizar estos términos; la versión vigente estará publicada en la web.</p>
-        <p><strong>Divisibilidad:</strong> Si alguna cláusula es inválida, las restantes permanecen vigentes.</p>
-        <p><strong>Prioridad documental:</strong> Prevalece lo pactado en la cotización/orden de servicio y su anexo técnico.</p>
-      </div>
-    </div>
-
-    <div class="acordeon-item">
-      <button class="acordeon-titulo">📂 Anexo opcional para planes mensuales y acceso a plataformas</button>
-      <div class="acordeon-contenido">
-        <p><strong>Acceso condicionado al pago:</strong> El acceso se habilita durante el período pagado y se suspende automáticamente ante mora.</p>
-        <p><strong>Renovaciones:</strong> Pueden ser automáticas o manuales según el plan.</p>
-        <p><strong>Uso permitido:</strong> Prohibido compartir accesos o redistribuir contenidos a terceros.</p>
-        <p><strong>Soporte:</strong> Incluye soporte técnico razonable durante el período activo; requerimientos extra se cotizan.</p>
-      </div>
-    </div>
-
-       <!-- Botón volver -->
-    <a href="https://overlineagencia.com.co/" class="btn-volver">Volver al inicio</a>
+<div class="container">
+  <div class="sidebar">
+    <div class="category active" onclick="filter('all',this)">Todos</div>
+    <div class="category" onclick="filter('branding',this)">Branding</div>
+    <div class="category" onclick="filter('audiovisual',this)">Audiovisual</div>
+    <div class="category" onclick="filter('redes',this)">Redes</div>
   </div>
 
-  <script>
-    // Interactividad acordeón
-    document.querySelectorAll(".acordeon-titulo").forEach(titulo => {
-      titulo.addEventListener("click", () => {
-        const item = titulo.parentElement;
-        item.classList.toggle("activo");
-      });
+  <div class="main">
+    <div class="hero">
+      <h1>Construye tu sistema creativo</h1>
+      <p>Desbloquea beneficios según tu inversión.</p>
+    </div>
+    <div class="grid" id="grid"></div>
+  </div>
+</div>
+
+<div class="offcanvas" id="cartPanel">
+  <button onclick="toggleCart()" style="position:absolute;top:15px;right:15px;background:none;border:none;color:white;font-size:18px;cursor:pointer;">✕</button>
+  <h2>Tu Proyecto</h2>
+  <div id="cartItems"></div>
+
+  <div class="progress">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+
+  <p>Subtotal: $<span id="subtotalEl">0</span></p>
+  <p>Descuento: <span id="discountEl">0</span>%</p>
+  <h3>Total: $<span id="totalEl">0</span></h3>
+  <label style="display:flex;align-items:center;gap:8px;margin:10px 0;font-size:14px;cursor:pointer;">
+  <input type="checkbox" id="ivaCheck" onchange="update()" style="cursor:pointer;">
+  Aplicar IVA 19%
+</label>
+
+<p>IVA: $<span id="ivaEl">0</span></p>
+<h3>Total Final: $<span id="totalFinalEl">0</span></h3>
+
+<p style="font-size:12px;color:#94a3b8">
+  *Precios sin IVA incluido salvo que se especifique.
+</p>
+
+
+  <button class="generate" onclick="openModal()">Generar Cotización</button>
+</div>
+
+<div class="overlay" id="overlay" onclick="toggleCart()"></div>
+
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <h3>Datos para cotización</h3>
+    <input id="nombre" placeholder="Nombre persona o empresa">
+    <input id="documento" placeholder="Cédula o NIT">
+    <input id="ciudad" placeholder="Ciudad">
+    <input id="email" placeholder="Email">
+    <input id="whatsapp" placeholder="WhatsApp">
+    <button class="generate" onclick="enviar()" id="sendBtn">
+      Enviar Cotización
+    </button>
+    <div id="loading" style="display:none;margin-top:15px;text-align:center;">
+      <div class="loader"></div>
+      <p style="margin-top:10px;font-size:14px;">Generando cotización...</p>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const ENDPOINT="https://script.google.com/macros/s/AKfycbzNpn2yXH_R6zpLaStBEyrLrpSC0Lo9-CXNP_fJyU-TCivSOs2k_7mvzNvZpCV_6reXpA/exec";
+
+const services=[
+{id:1,name:"Logo Profesional",price:400000,cat:"branding",level:"B"},
+{id:2,name:"Manual Marca",price:800000,cat:"branding",level:"C"},
+{id:3,name:"Reel Básico",price:250000,cat:"audiovisual",level:"B"},
+{id:4,name:"Reel Pro",price:500000,cat:"audiovisual",level:"C"},
+{id:5,name:"Gestión Redes",price:600000,cat:"redes",level:"B"}
+];
+
+let cart={};
+let subtotal=0,discount=0,total=0,ivaValor=0,totalFinal=0;
+
+function format(n){return Number(n).toLocaleString("es-CO");}
+
+function render(list){
+  grid.innerHTML="";
+  list.forEach(s=>{
+    grid.innerHTML+=`
+    <div class="card">
+      <h3>${s.name}</h3>
+      <div class="price">$ ${format(s.price)}</div>
+      <button class="add" onclick="add(${s.id})">Agregar</button>
+    </div>`;
+  });
+}
+
+function filter(cat,el){
+  document.querySelectorAll(".category").forEach(c=>c.classList.remove("active"));
+  el.classList.add("active");
+  if(cat==="all")render(services);
+  else render(services.filter(s=>s.cat===cat));
+}
+
+function add(id){
+  const s=services.find(x=>x.id===id);
+  cart[id]?cart[id].qty++:cart[id]={...s,qty:1};
+  update();save();
+}
+
+function change(id,v){
+  cart[id].qty+=v;
+  if(cart[id].qty<=0)delete cart[id];
+  update();save();
+}
+
+function update(){
+  subtotal=0;
+  let totalC=0;
+  cartItems.innerHTML="";
+
+  Object.values(cart).forEach(i=>{
+    const t=i.price*i.qty;
+    subtotal+=t;
+    if(i.level==="C") totalC+=t;
+
+    cartItems.innerHTML+=`
+      <div class="cart-item">
+        ${i.name} x${i.qty}
+        <button class="qty" onclick="change(${i.id},1)">+</button>
+        <button class="qty" onclick="change(${i.id},-1)">-</button>
+        <br>$ ${format(t)}
+      </div>`;
+  });
+
+  let credits=Math.floor(subtotal/100000);
+
+  if(credits>=15)discount=18;
+  else if(credits>=10)discount=15;
+  else if(credits>=6)discount=10;
+  else if(credits>=3)discount=5;
+  else discount=0;
+
+  if(subtotal>0 && (totalC/subtotal)>0.4)
+    discount=Math.min(discount,10);
+
+  total=subtotal-(subtotal*(discount/100));
+
+  const aplicarIVA=document.getElementById("ivaCheck")?.checked || false;
+  ivaValor= aplicarIVA ? total*0.19 : 0;
+  totalFinal= total + ivaValor;
+
+  subtotalEl.textContent=format(subtotal);
+  discountEl.textContent=discount;
+  totalEl.textContent=format(total);
+  ivaEl.textContent=format(ivaValor);
+  totalFinalEl.textContent=format(totalFinal);
+
+  progressBar.style.width=Math.min((credits/15)*100,100)+"%";
+}
+
+function toggleCart(){
+  cartPanel.classList.toggle("active");
+  if(cartPanel.classList.contains("active")){
+    overlay.style.display="block";
+    document.body.style.overflow="hidden";
+  }else{
+    overlay.style.display="none";
+    document.body.style.overflow="auto";
+  }
+}
+
+function openModal(){
+  if(subtotal===0){
+    showToast("Agrega servicios primero");
+    return;
+  }
+  modal.classList.add("active");
+}
+
+function closeModal(){
+  modal.classList.remove("active");
+}
+
+async function enviar(){
+
+  const cliente={
+    nombre:nombre.value.trim(),
+    documento:documento.value.trim(),
+    ciudad:ciudad.value.trim(),
+    email:email.value.trim(),
+    whatsapp:whatsapp.value.trim()
+  };
+
+  if(!cliente.nombre||!cliente.documento||!cliente.email||!cliente.whatsapp||!cliente.ciudad){
+    showToast("Completa todos los campos");
+    return;
+  }
+
+  sendBtn.style.display="none";
+  loading.style.display="block";
+
+  const carrito=Object.values(cart).map(i=>({
+    nombre:i.name,
+    qty:i.qty,
+    precio:i.price,
+    total:i.price*i.qty
+  }));
+
+  const aplicarIVA=document.getElementById("ivaCheck").checked;
+
+  try{
+
+    const response = await fetch(ENDPOINT,{
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json"
+      },
+      body:JSON.stringify({
+        cliente,
+        carrito,
+        subtotal,
+        discount,
+        total,
+        aplicarIVA
+      })
     });
-  </script>
+
+    const text = await response.text();
+
+    console.log("Respuesta servidor:", text);
+
+    if(!response.ok || !text.includes("OK")){
+      throw new Error(text);
+    }
+
+    loading.style.display="none";
+    closeModal();
+    showToast("Cotización enviada correctamente 🚀");
+
+    cart={};
+    update();
+    save();
+
+  }catch(error){
+
+    console.error("ERROR:", error);
+
+    loading.style.display="none";
+    sendBtn.style.display="block";
+
+    showToast("Error real del servidor. Revisa consola.");
+  }
+}
+
+function showToast(msg){
+  toast.textContent=msg;
+  toast.classList.add("show");
+  setTimeout(()=>toast.classList.remove("show"),3000);
+}
+
+function save(){
+  localStorage.setItem("overlineCart",JSON.stringify({
+    cart,
+    iva:document.getElementById("ivaCheck")?.checked || false
+  }));
+}
+
+function load(){
+  const d=localStorage.getItem("overlineCart");
+  if(d){
+    const data=JSON.parse(d);
+    cart=data.cart || {};
+    if(data.iva) document.getElementById("ivaCheck").checked=true;
+    update();
+  }
+}
+
+render(services);
+load();
+</script>
+
+
 </body>
 </html>
-
