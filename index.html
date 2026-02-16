@@ -678,15 +678,24 @@ async function enviar(){
   sendBtn.style.display="none";
   loading.style.display="block";
 
-  const carrito=Object.values(cart).map(i=>({
+  const carrito = Object.values(cart).map(i => {
 
-    nombre:i.name,
-    descripcion:i.description.objetivo,
-    qty:i.qty,
-    precio:i.price,
-    total:i.price*i.qty
+  const objetivo = i.description?.objetivo || "";
 
-  }));
+  const incluye = Array.isArray(i.description?.incluye)
+    ? i.description.incluye.join(", ")
+    : "";
+
+  return {
+    nombre: i.name || "",
+    descripcion: objetivo + (incluye ? " | " + incluye : ""),
+    qty: i.qty || 0,
+    precio: i.price || 0,
+    total: (i.price || 0) * (i.qty || 0)
+  };
+
+});
+
 
   try{
 
@@ -802,4 +811,5 @@ load();
 
 </body>
 </html>
+
 
