@@ -788,19 +788,47 @@ function save(){
 
 function load(){
 
-  const d=localStorage.getItem("overlineCart");
+  const d = localStorage.getItem("overlineCart");
 
   if(!d) return;
 
-  const data=JSON.parse(d);
+  try{
 
-  cart=data.cart||{};
+    const data = JSON.parse(d);
 
-  document.getElementById("ivaCheck").checked=data.iva||false;
+    cart = {};
 
-  update();
+    Object.values(data.cart || {}).forEach(savedItem=>{
+
+      const original = services.find(s=>s.id == savedItem.id);
+
+      if(original){
+
+        cart[original.id] = {
+          ...original,
+          qty: savedItem.qty
+        };
+
+      }
+
+    });
+
+    if(data.iva)
+      document.getElementById("ivaCheck").checked = true;
+
+    update();
+
+  }
+  catch(e){
+
+    console.error("Error loading cart", e);
+
+    localStorage.removeItem("overlineCart");
+
+  }
 
 }
+
 
 /* INIT */
 
@@ -811,5 +839,6 @@ load();
 
 </body>
 </html>
+
 
 
