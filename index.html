@@ -295,7 +295,9 @@ header{
 <body>
 
 <header>
-  <div class="logo">OVERLINE STUDIO</div>
+  <a href="https://overlineagencia.com.co/">
+    <img src="logo.webp" style="width:120px;">
+  </a>
   <button class="cart-btn" onclick="toggleCart()">Proyecto 🛒</button>
 </header>
 
@@ -365,41 +367,194 @@ header{
 </div>
 
 <div class="toast" id="toast"></div>
+	<script>
 
-<script>
-const ENDPOINT="/api/cotizacion";
+/* =========================
+   ENDPOINT NUEVO
+========================= */
+
+const ENDPOINT="https://script.google.com/macros/s/AKfycbxKRmIduF1ajaLvdFf5YboLju07ZcN6S5Gn6Ucxj9oDgzjfOBdGhEZQXhmvPTR32V1x/exec";
+const cartPanel = document.getElementById("cartPanel");
+const overlay = document.getElementById("overlay");
+const modal = document.getElementById("modal");
+const grid = document.getElementById("grid");
+const cartItems = document.getElementById("cartItems");
+const progressBar = document.getElementById("progressBar");
+
+const subtotalEl = document.getElementById("subtotalEl");
+const discountEl = document.getElementById("discountEl");
+const totalEl = document.getElementById("totalEl");
+const ivaEl = document.getElementById("ivaEl");
+const totalFinalEl = document.getElementById("totalFinalEl");
+
+const toast = document.getElementById("toast");
+const sendBtn = document.getElementById("sendBtn");
+const loading = document.getElementById("loading");
+
+const nombre = document.getElementById("nombre");
+const documento = document.getElementById("documento");
+const ciudad = document.getElementById("ciudad");
+const email = document.getElementById("email");
+const whatsapp = document.getElementById("whatsapp");
+
+/* =========================
+   SERVICIOS CON DESCRIPCIÓN
+========================= */
 
 const services=[
-{id:1,name:"Logo Profesional",price:400000,cat:"branding",level:"B"},
-{id:2,name:"Manual Marca",price:800000,cat:"branding",level:"C"},
-{id:3,name:"Reel Básico",price:250000,cat:"audiovisual",level:"B"},
-{id:4,name:"Reel Pro",price:500000,cat:"audiovisual",level:"C"},
-{id:5,name:"Gestión Redes",price:600000,cat:"redes",level:"B"}
+{
+  id:1,
+  name:"Logo Profesional",
+  price:400000,
+  cat:"branding",
+  level:"B",
+  description:{
+    objetivo:"Construcción estratégica de identidad visual.",
+    incluye:[
+      "Investigación conceptual",
+      "3 propuestas iniciales",
+      "2 rondas de ajustes",
+      "Entrega en formatos editables y PNG"
+    ],
+    entrega:"5 a 8 días hábiles",
+    ideal:"Emprendedores y nuevas marcas"
+  }
+},
+{
+  id:2,
+  name:"Manual de Marca",
+  price:800000,
+  cat:"branding",
+  level:"C",
+  description:{
+    objetivo:"Documento estratégico de lineamientos visuales.",
+    incluye:[
+      "Normas de uso del logo",
+      "Paleta cromática",
+      "Tipografías",
+      "Aplicaciones básicas"
+    ],
+    entrega:"8 a 12 días hábiles",
+    ideal:"Empresas en crecimiento"
+  }
+},
+{
+  id:3,
+  name:"Reel Básico",
+  price:250000,
+  cat:"audiovisual",
+  level:"B",
+  description:{
+    objetivo:"Video corto para redes sociales.",
+    incluye:[
+      "Edición dinámica",
+      "Subtítulos animados",
+      "Formato vertical"
+    ],
+    entrega:"3 a 5 días hábiles",
+    ideal:"Redes sociales"
+  }
+},
+{
+  id:4,
+  name:"Reel Pro",
+  price:500000,
+  cat:"audiovisual",
+  level:"C",
+  description:{
+    objetivo:"Producción audiovisual premium.",
+    incluye:[
+      "Guión estructurado",
+      "Grabación profesional",
+      "Edición avanzada",
+      "Corrección de color"
+    ],
+    entrega:"7 a 10 días hábiles",
+    ideal:"Campañas y lanzamientos"
+  }
+},
+{
+  id:5,
+  name:"Gestión Redes",
+  price:600000,
+  cat:"redes",
+  level:"B",
+  description:{
+    objetivo:"Administración estratégica mensual.",
+    incluye:[
+      "Calendario de contenido",
+      "Diseño de piezas",
+      "Copywriting",
+      "Reporte mensual"
+    ],
+    entrega:"Servicio mensual",
+    ideal:"Empresas activas en redes"
+  }
+}
 ];
+
+/* =========================
+   VARIABLES
+========================= */
 
 let cart={};
 let subtotal=0,discount=0,total=0,ivaValor=0,totalFinal=0;
 
 function format(n){return Number(n).toLocaleString("es-CO");}
 
+/* =========================
+   RENDER SERVICIOS
+========================= */
+
 function render(list){
   grid.innerHTML="";
   list.forEach(s=>{
+
+    const incluyeHTML = s.description.incluye
+      .map(item=>`<li>${item}</li>`).join("");
+
     grid.innerHTML+=`
     <div class="card">
       <h3>${s.name}</h3>
+
+      <p style="font-size:13px;color:#94a3b8;margin-top:8px;">
+        ${s.description.objetivo}
+      </p>
+
+      <ul style="font-size:12px;color:#94a3b8;margin-top:8px;padding-left:18px;">
+        ${incluyeHTML}
+      </ul>
+
+      <p style="font-size:12px;color:#64748b;margin-top:6px;">
+        <strong>Entrega:</strong> ${s.description.entrega}
+      </p>
+
       <div class="price">$ ${format(s.price)}</div>
-      <button class="add" onclick="add(${s.id})">Agregar</button>
+
+      <button class="add" onclick="add(${s.id})">
+        Agregar
+      </button>
     </div>`;
   });
 }
 
+/* =========================
+   FILTRO
+========================= */
+
 function filter(cat,el){
-  document.querySelectorAll(".category").forEach(c=>c.classList.remove("active"));
+  document.querySelectorAll(".category")
+  .forEach(c=>c.classList.remove("active"));
+
   el.classList.add("active");
+
   if(cat==="all")render(services);
   else render(services.filter(s=>s.cat===cat));
 }
+
+/* =========================
+   CARRITO
+========================= */
 
 function add(id){
   const s=services.find(x=>x.id===id);
@@ -414,13 +569,16 @@ function change(id,v){
 }
 
 function update(){
+
   subtotal=0;
   let totalC=0;
   cartItems.innerHTML="";
 
   Object.values(cart).forEach(i=>{
+
     const t=i.price*i.qty;
     subtotal+=t;
+
     if(i.level==="C") totalC+=t;
 
     cartItems.innerHTML+=`
@@ -458,28 +616,9 @@ function update(){
   progressBar.style.width=Math.min((credits/15)*100,100)+"%";
 }
 
-function toggleCart(){
-  cartPanel.classList.toggle("active");
-  if(cartPanel.classList.contains("active")){
-    overlay.style.display="block";
-    document.body.style.overflow="hidden";
-  }else{
-    overlay.style.display="none";
-    document.body.style.overflow="auto";
-  }
-}
-
-function openModal(){
-  if(subtotal===0){
-    showToast("Agrega servicios primero");
-    return;
-  }
-  modal.classList.add("active");
-}
-
-function closeModal(){
-  modal.classList.remove("active");
-}
+/* =========================
+   ENVÍO
+========================= */
 
 async function enviar(){
 
@@ -491,7 +630,9 @@ async function enviar(){
     whatsapp:whatsapp.value.trim()
   };
 
-  if(!cliente.nombre||!cliente.documento||!cliente.email||!cliente.whatsapp||!cliente.ciudad){
+  if(!cliente.nombre||!cliente.documento||
+     !cliente.email||!cliente.whatsapp||
+     !cliente.ciudad){
     showToast("Completa todos los campos");
     return;
   }
@@ -501,34 +642,31 @@ async function enviar(){
 
   const carrito=Object.values(cart).map(i=>({
     nombre:i.name,
+    descripcion:i.description.objetivo + " | " + i.description.incluye.join(", "),
     qty:i.qty,
     precio:i.price,
     total:i.price*i.qty
   }));
-
-  const aplicarIVA=document.getElementById("ivaCheck").checked;
 
   try{
 
     const response = await fetch(ENDPOINT,{
       method:"POST",
       headers:{
-  "Content-Type":"application/json"
-},
-
+        "Content-Type":"application/json"
+      },
       body:JSON.stringify({
         cliente,
         carrito,
         subtotal,
         discount,
         total,
-        aplicarIVA
+        iva:ivaValor,
+        totalFinal
       })
     });
 
     const text = await response.text();
-
-    console.log("Respuesta servidor:", text);
 
     if(!response.ok || !text.includes("OK")){
       throw new Error(text);
@@ -544,14 +682,19 @@ async function enviar(){
 
   }catch(error){
 
-    console.error("ERROR:", error);
+    console.error(error);
 
     loading.style.display="none";
     sendBtn.style.display="block";
 
-    showToast("Error real del servidor. Revisa consola.");
+    showToast("Error del servidor");
   }
 }
+
+
+/* =========================
+   UTILIDADES
+========================= */
 
 function showToast(msg){
   toast.textContent=msg;
@@ -575,15 +718,35 @@ function load(){
     update();
   }
 }
+/* =========================
+   UI CONTROLS
+========================= */
+
+function toggleCart(){
+  cartPanel.classList.toggle("active");
+
+  if(cartPanel.classList.contains("active")){
+    overlay.style.display = "block";
+  } else {
+    overlay.style.display = "none";
+  }
+}
+
+function openModal(){
+  modal.classList.add("active");
+}
+
+function closeModal(){
+  modal.classList.remove("active");
+}
+
+/* INIT */
 
 render(services);
 load();
+
 </script>
 
 
 </body>
 </html>
-
-
-
-
