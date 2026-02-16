@@ -930,6 +930,88 @@ font-weight:600;
     max-width: 100%;
   }
 }
+/*footer=================================================================================*/
+	.overline-footer {
+  background: #050912;
+  padding: 80px 20px 30px;
+  color: #9aa4c4;
+  border-top: 1px solid rgba(0,132,255,0.2);
+}
+
+.overline-footer-container {
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 50px;
+}
+
+.footer-col h3 {
+  font-size: 24px;
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+.footer-col h4 {
+  font-size: 18px;
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+.footer-col p {
+  line-height: 1.6;
+}
+
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-col ul li {
+  margin-bottom: 12px;
+}
+
+.footer-col ul li a {
+  text-decoration: none;
+  color: #9aa4c4;
+  transition: 0.3s;
+}
+
+.footer-col ul li a:hover {
+  color: #0084ff;
+}
+
+.footer-socials {
+  display: flex;
+  gap: 15px;
+}
+
+.footer-socials a {
+  width: 40px;
+  height: 40px;
+  background: rgba(0,132,255,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: #0084ff;
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+.footer-socials a:hover {
+  background: #0084ff;
+  color: #fff;
+  box-shadow: 0 0 15px rgba(0,132,255,0.5);
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 50px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(0,132,255,0.15);
+  font-size: 14px;
+}
 
 </style>
 </head>
@@ -1128,7 +1210,48 @@ Enviar cotización
 
 </aside>
 
+<footer class="overline-footer">
 
+  <div class="overline-footer-container">
+
+    <!-- Columna 1 -->
+    <div class="footer-col">
+      <h3>OVERLINE</h3>
+      <p>
+        Agencia creativa especializada en diseño gráfico, branding,
+        publicidad digital y producción audiovisual.
+      </p>
+    </div>
+
+    
+
+    <!-- Columna 3 -->
+    <div class="footer-col">
+      <h4>Contacto</h4>
+      <ul>
+        <li><a href="https://wa.me/573018282771" target="_blank">WhatsApp</a></li>
+        <li><a href="mailto:overlineagenciagrafica@gmail.com">Correo</a></li>
+        <li>Bogotá D.C., Colombia</li>
+      </ul>
+    </div>
+
+    <!-- Columna 4 -->
+    <div class="footer-col">
+      <h4>Síguenos</h4>
+      <div class="footer-socials">
+        <a href="https://www.facebook.com/share/16WUbAvNFM/" target="_blank"><img src="facebook-icon.webp" style="width: 45px;"></a>
+        <a href="https://www.instagram.com/overline_agencia_grafica?igsh=MXYzbmZva2Ntc201aw==" target="_blank"><img src="instagram-icon.webp" style="width: 45px;"></a>
+        <a href="https://www.tiktok.com/@overline.agencia?_r=1&_t=ZS-93oXS0Mkwa5" target="_blank"><img src="tiktok-icon.webp" style="width: 45px;"></a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    © <span id="year"></span> OVERLINE AGENCIA S.A.S – Todos los derechos reservados.
+  </div>
+
+</footer>
 
 <script>
 
@@ -2318,723 +2441,6 @@ toggleCart();
 });
 
 </script>
-<script>
-
-const ENDPOINT="https://script.google.com/macros/s/AKfycbwwYMJZNoKBfjC35pDH4pNNTmnRjZWb8qec61mgCzqJmpYxWRqY2x0WPwcZAActulLLmw/exec";
-
-/* =========================
-   SERVICIOS CON DESCRIPCIÓN
-========================= */
-
-const services=[
-{
-  id:1,
-  name:"Logo Profesional",
-  price:400000,
-  cat:"branding",
-  level:"B",
-  description:{
-    objetivo:"Construcción estratégica de identidad visual.",
-    incluye:[
-      "Investigación conceptual",
-      "3 propuestas iniciales",
-      "2 rondas de ajustes",
-      "Entrega en formatos editables y PNG"
-    ],
-    entrega:"5 a 8 días hábiles",
-    ideal:"Emprendedores y nuevas marcas"
-  }
-},
-{
-  id:2,
-  name:"Manual de Marca",
-  price:800000,
-  cat:"branding",
-  level:"C",
-  description:{
-    objetivo:"Documento estratégico de lineamientos visuales.",
-    incluye:[
-      "Normas de uso del logo",
-      "Paleta cromática",
-      "Tipografías",
-      "Aplicaciones básicas"
-    ],
-    entrega:"8 a 12 días hábiles",
-    ideal:"Empresas en crecimiento"
-  }
-},
-{
-  id:3,
-  name:"Reel Básico",
-  price:250000,
-  cat:"audiovisual",
-  level:"B",
-  description:{
-    objetivo:"Video corto para redes sociales.",
-    incluye:[
-      "Edición dinámica",
-      "Subtítulos animados",
-      "Formato vertical"
-    ],
-    entrega:"3 a 5 días hábiles",
-    ideal:"Redes sociales"
-  }
-},
-{
-  id:4,
-  name:"Reel Pro",
-  price:500000,
-  cat:"audiovisual",
-  level:"C",
-  description:{
-    objetivo:"Producción audiovisual premium.",
-    incluye:[
-      "Guión estructurado",
-      "Grabación profesional",
-      "Edición avanzada",
-      "Corrección de color"
-    ],
-    entrega:"7 a 10 días hábiles",
-    ideal:"Campañas y lanzamientos"
-  }
-},
-{
-  id:5,
-  name:"Gestión Redes",
-  price:600000,
-  cat:"redes",
-  level:"B",
-  description:{
-    objetivo:"Administración estratégica mensual.",
-    incluye:[
-      "Calendario de contenido",
-      "Diseño de piezas",
-      "Copywriting",
-      "Reporte mensual"
-    ],
-    entrega:"Servicio mensual",
-    ideal:"Empresas activas en redes"
-  }
-}
-];
-
-/* =========================
-   VARIABLES
-========================= */
-
-let cart={};
-let subtotal=0,discount=0,total=0,ivaValor=0,totalFinal=0;
-
-function format(n){return Number(n).toLocaleString("es-CO");}
-
-/* =========================
-   RENDER SERVICIOS
-========================= */
-
-function render(list){
-  grid.innerHTML="";
-  list.forEach(s=>{
-
-    const incluyeHTML = s.description.incluye
-      .map(item=>`<li>${item}</li>`).join("");
-
-    grid.innerHTML+=`
-    <div class="card">
-      <h3>${s.name}</h3>
-
-      <p style="font-size:13px;color:#94a3b8;margin-top:8px;">
-        ${s.description.objetivo}
-      </p>
-
-      <ul style="font-size:12px;color:#94a3b8;margin-top:8px;padding-left:18px;">
-        ${incluyeHTML}
-      </ul>
-
-      <p style="font-size:12px;color:#64748b;margin-top:6px;">
-        <strong>Entrega:</strong> ${s.description.entrega}
-      </p>
-
-      <div class="price">$ ${format(s.price)}</div>
-
-      <button class="add" onclick="add(${s.id})">
-        Agregar
-      </button>
-    </div>`;
-  });
-}
-
-/* =========================
-   FILTRO
-========================= */
-
-function filter(cat,el){
-  document.querySelectorAll(".category")
-  .forEach(c=>c.classList.remove("active"));
-
-  el.classList.add("active");
-
-  if(cat==="all")render(services);
-  else render(services.filter(s=>s.cat===cat));
-}
-
-/* =========================
-   CARRITO
-========================= */
-
-function add(id){
-  const s=services.find(x=>x.id===id);
-  cart[id]?cart[id].qty++:cart[id]={...s,qty:1};
-  update();save();
-}
-
-function change(id,v){
-  cart[id].qty+=v;
-  if(cart[id].qty<=0)delete cart[id];
-  update();save();
-}
-
-function update(){
-
-  subtotal=0;
-  let totalC=0;
-  cartItems.innerHTML="";
-
-  Object.values(cart).forEach(i=>{
-
-    const t=i.price*i.qty;
-    subtotal+=t;
-
-    if(i.level==="C") totalC+=t;
-
-    cartItems.innerHTML+=`
-      <div class="cart-item">
-        ${i.name} x${i.qty}
-        <button class="qty" onclick="change(${i.id},1)">+</button>
-        <button class="qty" onclick="change(${i.id},-1)">-</button>
-        <br>$ ${format(t)}
-      </div>`;
-  });
-
-  let credits=Math.floor(subtotal/100000);
-
-  if(credits>=15)discount=18;
-  else if(credits>=10)discount=15;
-  else if(credits>=6)discount=10;
-  else if(credits>=3)discount=5;
-  else discount=0;
-
-  if(subtotal>0 && (totalC/subtotal)>0.4)
-    discount=Math.min(discount,10);
-
-  total=subtotal-(subtotal*(discount/100));
-
-  const aplicarIVA=document.getElementById("ivaCheck")?.checked || false;
-
-  ivaValor= aplicarIVA ? total*0.19 : 0;
-  totalFinal= total + ivaValor;
-
-  subtotalEl.textContent=format(subtotal);
-  discountEl.textContent=discount;
-  totalEl.textContent=format(total);
-  ivaEl.textContent=format(ivaValor);
-  totalFinalEl.textContent=format(totalFinal);
-
-  progressBar.style.width=Math.min((credits/15)*100,100)+"%";
-}
-
-/* =========================
-   UI
-========================= */
-
-function toggleCart(){
-  cartPanel.classList.toggle("active");
-  overlay.style.display=cartPanel.classList.contains("active")?"block":"none";
-  document.body.style.overflow=
-  cartPanel.classList.contains("active")?"hidden":"auto";
-}
-
-function openModal(){
-  if(subtotal===0){
-    showToast("Agrega servicios primero");
-    return;
-  }
-  modal.classList.add("active");
-}
-
-function closeModal(){
-  modal.classList.remove("active");
-}
-
-/* =========================
-   ENVÍO
-========================= */
-
-async function enviar(){
-
-  const cliente={
-    nombre:nombre.value.trim(),
-    documento:documento.value.trim(),
-    ciudad:ciudad.value.trim(),
-    email:email.value.trim(),
-    whatsapp:whatsapp.value.trim()
-  };
-
-  if(!cliente.nombre||!cliente.documento||
-     !cliente.email||!cliente.whatsapp||
-     !cliente.ciudad){
-    showToast("Completa todos los campos");
-    return;
-  }
-
-  sendBtn.style.display="none";
-  loading.style.display="block";
-
-  const carrito=Object.values(cart).map(i=>({
-    nombre:i.name,
-    descripcion:i.description,
-    qty:i.qty,
-    precio:i.price,
-    total:i.price*i.qty
-  }));
-
-  const aplicarIVA=document.getElementById("ivaCheck").checked;
-
-  try{
-
-    const response = await fetch(ENDPOINT,{
-      method:"POST",
-      headers:{
-        "Content-Type":"application/json"
-      },
-      body:JSON.stringify({
-        cliente,
-        carrito,
-        subtotal,
-        discount,
-        total,
-        iva:ivaValor,
-        totalFinal,
-        aplicarIVA
-      })
-    });
-
-    const text = await response.text();
-
-    if(!response.ok){
-      throw new Error(text);
-    }
-
-    loading.style.display="none";
-    closeModal();
-    showToast("Cotización enviada correctamente 🚀");
-
-    cart={};
-    update();
-    save();
-
-  }catch(error){
-
-    console.error("ERROR:", error);
-
-    loading.style.display="none";
-    sendBtn.style.display="block";
-
-    showToast("Error real del servidor. Revisa consola.");
-  }
-}
-
-/* =========================
-   UTILIDADES
-========================= */
-
-function showToast(msg){
-  toast.textContent=msg;
-  toast.classList.add("show");
-  setTimeout(()=>toast.classList.remove("show"),3000);
-}
-
-function save(){
-  localStorage.setItem("overlineCart",JSON.stringify({
-    cart,
-    iva:document.getElementById("ivaCheck")?.checked || false
-  }));
-}
-
-function load(){
-  const d=localStorage.getItem("overlineCart");
-  if(d){
-    const data=JSON.parse(d);
-    cart=data.cart || {};
-    if(data.iva) document.getElementById("ivaCheck").checked=true;
-    update();
-  }
-}
-
-/* INIT */
-
-render(services);
-load();
-
-</script>
-<script>
-
-const ENDPOINT="https://script.google.com/macros/s/AKfycbwwYMJZNoKBfjC35pDH4pNNTmnRjZWb8qec61mgCzqJmpYxWRqY2x0WPwcZAActulLLmw/exec";
-
-/* =========================
-   SERVICIOS CON DESCRIPCIÓN
-========================= */
-
-const services=[
-{
-  id:1,
-  name:"Logo Profesional",
-  price:400000,
-  cat:"branding",
-  level:"B",
-  description:{
-    objetivo:"Construcción estratégica de identidad visual.",
-    incluye:[
-      "Investigación conceptual",
-      "3 propuestas iniciales",
-      "2 rondas de ajustes",
-      "Entrega en formatos editables y PNG"
-    ],
-    entrega:"5 a 8 días hábiles",
-    ideal:"Emprendedores y nuevas marcas"
-  }
-},
-{
-  id:2,
-  name:"Manual de Marca",
-  price:800000,
-  cat:"branding",
-  level:"C",
-  description:{
-    objetivo:"Documento estratégico de lineamientos visuales.",
-    incluye:[
-      "Normas de uso del logo",
-      "Paleta cromática",
-      "Tipografías",
-      "Aplicaciones básicas"
-    ],
-    entrega:"8 a 12 días hábiles",
-    ideal:"Empresas en crecimiento"
-  }
-},
-{
-  id:3,
-  name:"Reel Básico",
-  price:250000,
-  cat:"audiovisual",
-  level:"B",
-  description:{
-    objetivo:"Video corto para redes sociales.",
-    incluye:[
-      "Edición dinámica",
-      "Subtítulos animados",
-      "Formato vertical"
-    ],
-    entrega:"3 a 5 días hábiles",
-    ideal:"Redes sociales"
-  }
-},
-{
-  id:4,
-  name:"Reel Pro",
-  price:500000,
-  cat:"audiovisual",
-  level:"C",
-  description:{
-    objetivo:"Producción audiovisual premium.",
-    incluye:[
-      "Guión estructurado",
-      "Grabación profesional",
-      "Edición avanzada",
-      "Corrección de color"
-    ],
-    entrega:"7 a 10 días hábiles",
-    ideal:"Campañas y lanzamientos"
-  }
-},
-{
-  id:5,
-  name:"Gestión Redes",
-  price:600000,
-  cat:"redes",
-  level:"B",
-  description:{
-    objetivo:"Administración estratégica mensual.",
-    incluye:[
-      "Calendario de contenido",
-      "Diseño de piezas",
-      "Copywriting",
-      "Reporte mensual"
-    ],
-    entrega:"Servicio mensual",
-    ideal:"Empresas activas en redes"
-  }
-}
-];
-
-/* =========================
-   VARIABLES
-========================= */
-
-let cart={};
-let subtotal=0,discount=0,total=0,ivaValor=0,totalFinal=0;
-
-function format(n){return Number(n).toLocaleString("es-CO");}
-
-/* =========================
-   RENDER SERVICIOS
-========================= */
-
-function render(list){
-  grid.innerHTML="";
-  list.forEach(s=>{
-
-    const incluyeHTML = s.description.incluye
-      .map(item=>`<li>${item}</li>`).join("");
-
-    grid.innerHTML+=`
-    <div class="card">
-      <h3>${s.name}</h3>
-
-      <p style="font-size:13px;color:#94a3b8;margin-top:8px;">
-        ${s.description.objetivo}
-      </p>
-
-      <ul style="font-size:12px;color:#94a3b8;margin-top:8px;padding-left:18px;">
-        ${incluyeHTML}
-      </ul>
-
-      <p style="font-size:12px;color:#64748b;margin-top:6px;">
-        <strong>Entrega:</strong> ${s.description.entrega}
-      </p>
-
-      <div class="price">$ ${format(s.price)}</div>
-
-      <button class="add" onclick="add(${s.id})">
-        Agregar
-      </button>
-    </div>`;
-  });
-}
-
-/* =========================
-   FILTRO
-========================= */
-
-function filter(cat,el){
-  document.querySelectorAll(".category")
-  .forEach(c=>c.classList.remove("active"));
-
-  el.classList.add("active");
-
-  if(cat==="all")render(services);
-  else render(services.filter(s=>s.cat===cat));
-}
-
-/* =========================
-   CARRITO
-========================= */
-
-function add(id){
-  const s=services.find(x=>x.id===id);
-  cart[id]?cart[id].qty++:cart[id]={...s,qty:1};
-  update();save();
-}
-
-function change(id,v){
-  cart[id].qty+=v;
-  if(cart[id].qty<=0)delete cart[id];
-  update();save();
-}
-
-function update(){
-
-  subtotal=0;
-  let totalC=0;
-  cartItems.innerHTML="";
-
-  Object.values(cart).forEach(i=>{
-
-    const t=i.price*i.qty;
-    subtotal+=t;
-
-    if(i.level==="C") totalC+=t;
-
-    cartItems.innerHTML+=`
-      <div class="cart-item">
-        ${i.name} x${i.qty}
-        <button class="qty" onclick="change(${i.id},1)">+</button>
-        <button class="qty" onclick="change(${i.id},-1)">-</button>
-        <br>$ ${format(t)}
-      </div>`;
-  });
-
-  let credits=Math.floor(subtotal/100000);
-
-  if(credits>=15)discount=18;
-  else if(credits>=10)discount=15;
-  else if(credits>=6)discount=10;
-  else if(credits>=3)discount=5;
-  else discount=0;
-
-  if(subtotal>0 && (totalC/subtotal)>0.4)
-    discount=Math.min(discount,10);
-
-  total=subtotal-(subtotal*(discount/100));
-
-  const aplicarIVA=document.getElementById("ivaCheck")?.checked || false;
-
-  ivaValor= aplicarIVA ? total*0.19 : 0;
-  totalFinal= total + ivaValor;
-
-  subtotalEl.textContent=format(subtotal);
-  discountEl.textContent=discount;
-  totalEl.textContent=format(total);
-  ivaEl.textContent=format(ivaValor);
-  totalFinalEl.textContent=format(totalFinal);
-
-  progressBar.style.width=Math.min((credits/15)*100,100)+"%";
-}
-
-/* =========================
-   UI
-========================= */
-
-function toggleCart(){
-  cartPanel.classList.toggle("active");
-  overlay.style.display=cartPanel.classList.contains("active")?"block":"none";
-  document.body.style.overflow=
-  cartPanel.classList.contains("active")?"hidden":"auto";
-}
-
-function openModal(){
-  if(subtotal===0){
-    showToast("Agrega servicios primero");
-    return;
-  }
-  modal.classList.add("active");
-}
-
-function closeModal(){
-  modal.classList.remove("active");
-}
-
-/* =========================
-   ENVÍO
-========================= */
-
-async function enviar(){
-
-  const cliente={
-    nombre:nombre.value.trim(),
-    documento:documento.value.trim(),
-    ciudad:ciudad.value.trim(),
-    email:email.value.trim(),
-    whatsapp:whatsapp.value.trim()
-  };
-
-  if(!cliente.nombre||!cliente.documento||
-     !cliente.email||!cliente.whatsapp||
-     !cliente.ciudad){
-    showToast("Completa todos los campos");
-    return;
-  }
-
-  sendBtn.style.display="none";
-  loading.style.display="block";
-
-  const carrito=Object.values(cart).map(i=>({
-    nombre:i.name,
-    descripcion:i.description,
-    qty:i.qty,
-    precio:i.price,
-    total:i.price*i.qty
-  }));
-
-  const aplicarIVA=document.getElementById("ivaCheck").checked;
-
-  try{
-
-    const response = await fetch(ENDPOINT,{
-      method:"POST",
-      headers:{
-        "Content-Type":"application/json"
-      },
-      body:JSON.stringify({
-        cliente,
-        carrito,
-        subtotal,
-        discount,
-        total,
-        iva:ivaValor,
-        totalFinal,
-        aplicarIVA
-      })
-    });
-
-    const text = await response.text();
-
-    if(!response.ok){
-      throw new Error(text);
-    }
-
-    loading.style.display="none";
-    closeModal();
-    showToast("Cotización enviada correctamente 🚀");
-
-    cart={};
-    update();
-    save();
-
-  }catch(error){
-
-    console.error("ERROR:", error);
-
-    loading.style.display="none";
-    sendBtn.style.display="block";
-
-    showToast("Error real del servidor. Revisa consola.");
-  }
-}
-
-/* =========================
-   UTILIDADES
-========================= */
-
-function showToast(msg){
-  toast.textContent=msg;
-  toast.classList.add("show");
-  setTimeout(()=>toast.classList.remove("show"),3000);
-}
-
-function save(){
-  localStorage.setItem("overlineCart",JSON.stringify({
-    cart,
-    iva:document.getElementById("ivaCheck")?.checked || false
-  }));
-}
-
-function load(){
-  const d=localStorage.getItem("overlineCart");
-  if(d){
-    const data=JSON.parse(d);
-    cart=data.cart || {};
-    if(data.iva) document.getElementById("ivaCheck").checked=true;
-    update();
-  }
-}
-
-/* INIT */
-
-render(services);
-load();
-
-</script>
 
 </body>
 </html>
-
