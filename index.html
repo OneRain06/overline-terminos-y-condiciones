@@ -640,13 +640,22 @@ async function enviar(){
   sendBtn.style.display="none";
   loading.style.display="block";
 
-  const carrito=Object.values(cart).map(i=>({
-    nombre:i.name,
-    descripcion:i.description.objetivo + " | " + i.description.incluye.join(", "),
-    qty:i.qty,
-    precio:i.price,
-    total:i.price*i.qty
-  }));
+  const carrito = Object.values(cart).map(i => {
+
+  const objetivo = i.description?.objetivo || "";
+  const incluye = Array.isArray(i.description?.incluye)
+      ? i.description.incluye.join(", ")
+      : "";
+
+  return {
+    nombre: i.name,
+    descripcion: objetivo + (incluye ? " | " + incluye : ""),
+    qty: i.qty,
+    precio: i.price,
+    total: i.price * i.qty
+  };
+});
+
 
   try{
 
@@ -750,4 +759,5 @@ load();
 
 </body>
 </html>
+
 
