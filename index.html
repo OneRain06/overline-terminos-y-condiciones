@@ -700,18 +700,17 @@ async function enviar(){
   try{
 
     const response=await fetch(ENDPOINT,{
-      method:"POST",
-      headers:{
-        "Content-Type":"application/json"
-      },
-      body:JSON.stringify({
-        cliente,
-        carrito,
-        subtotal,
-        iva:ivaValor,
-        totalFinal
-      })
-    });
+  method:"POST",
+  body:JSON.stringify({
+    cliente,
+    carrito,
+    subtotal,
+    iva:ivaValor,
+    totalFinal
+  }),
+  mode:"no-cors"
+});
+
 
     const text=await response.text();
 
@@ -839,6 +838,7 @@ load();
 
 </body>
 </html>
+
 
 
 
